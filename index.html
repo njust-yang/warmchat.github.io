@@ -122,10 +122,11 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
+      <h2 class="title is-3">Results demo (Video size limit, compressed) </h2>
       <video preload="auto"poster="" id="tree" autoplay controls muted loop width="600px" outline="0px"> 
         <!-- Your video -->
 <!--         <source src="pics/teaser.mp4" -->
-        <source src="pics/speaking.mp4"
+        <source src="pics/demo_compress.mp4"
         type="video/mp4">
       </video>
       <!-- <h2 class="subtitle has-text-centered"> 
@@ -143,22 +144,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Pre-trained conditional diffusion models have demonstrated
-impressive potential in the editing of real-world images. Although these methods achieve reasonable editing effects, they
-still suffer from inconsistencies for facial images in aspects
-of appearance, expression, and temporal coherence. These issues arise from the independent editing of single images and
-the inherent loss of temporal patterns of the editing process.
-In this paper, we introduce AvatarControl, a novel framework
-for editing and generating high-fidelity talking head avatars.
-Instead of performing independent image editing, AvatarControl leverages the correspondence represented by optical flow
-across views and frames to boost the editing consistency.
-Specifically, given a set of talking avatar images rendered by a
-pretrained 3D Gaussian Splatting model, we propose a multi-view consistency module to select reference views based on
-optical flow. These selected frames are then utilized to provide complementary view-consistency for the target image,
-unifying the edited appearance. Further, we propose a temporal consistency module, which applies the optical flow and
-depth map changes of source images to the diffusion process,
-fine-tuning the edited talking head images for better temporal
-stability. Extensive experiments demonstrate that AvatarControl outperforms state-of-the-art methods in terms of appearance, expression, and temporal consistency in edited avatars.
+            Generative models have advanced rapidly, enabling impressive talking head generation that brings AI to life. However, most existing methods focus solely on one-way portrait animation. Even the few that support bidirectional conversational interactions lack precise emotion-adaptive capabilities, significantly limiting their practical applicability. In this paper, we propose EAI-Avatar, a novel emotion-aware talking head generation framework for dyadic interactions. Leveraging the dialogue generation capability of large language models (LLMs, e.g., GPT-4), our method produces temporally consistent virtual avatars with rich emotional variations that seamlessly transition between speaking and listening states. Specifically, we design a Transformer-based head mask generator that learns temporally consistent motion features in a latent mask space, capable of generating arbitrary-length, temporally consistent mask sequences to constrain head motions. Furthermore, we introduce an interactive talking tree structure to represent dialogue state transitions, where each tree node contains information such as child/parent/sibling nodes and the current character's emotional state. By performing reverse-level traversal, we extract rich historical emotional cues from the current node to guide expression synthesis. Extensive experiments demonstrate the superior performance and effectiveness of our method.
           </p>
         </div>
       </div>
@@ -177,12 +163,7 @@ stability. Extensive experiments demonstrate that AvatarControl outperforms stat
           <img src="./pics/pipeline.png" alt="pipeline" style="max-width: 100%; height: auto;">
         </div>
         <h2 class="subtitle has-text-justified">
-          AvatarControl begins with the highly effective 3DGS model, which provides source render images and
-depths (stage 1). To ensure multi-view consistency, we integrate the depths and landmarks extracted using the pre-trained
-EMOCA with ControlNet, thereby maintaining both geometric and expression consistency. We then utilize optical flow changes
-from the source render images to identify valuable reference views for the current editing frame, applying an attention alignment
-strategy to further improve multi-view consistency (stage 2). Finally, we use the optical flow changes and depth variations from
-the source render images to develop a temporally consistent diffusion model, which generates the final edited results (stage 3).
+         First, we construct an Interactive Talking Tree (ITT) to represent the dynamic states of the dialogue throughout the modeling process. By performing a reverse hierarchical traversal with weighted operations on the ITT, we derive the cumulative emotional label at the current node. Additionally, we fine-tune the pre-trained audio-to-expression model to obtain the speaker's facial motion. Next, we introduce a Consistent Random Head Mask Generator (CRHMG) to regulate the head motion of both the speaker and the listener. We also develop a Listener Emotion-Expression Dictionary (LEED) that maps emotional labels to plausible facial expressions, which are then translated into corresponding facial motion. Finally, we design a diffusion model conditioned on both facial and head motion to generate realistic responses for the speaker and listener. Leveraging a large language model (GPT-4), the system supports continuous, open-ended dialogue between the two parties.
         </h2>
       </div>
     </div>
@@ -193,11 +174,11 @@ the source render images to develop a temporally consistent diffusion model, whi
 <section class="comparison">
   <div class="container is-max-desktop" style="text-align: center;">
     <div class="hero-body">
-     <h2 class="title is-3">Comparisons with Video Editing Methods</h2>
+     <h2 class="title is-3">Introduction of ITT (Interactive Talking Tree)</h2>
       <video preload="auto"poster="" id="tree" autoplay controls muted loop width="600px" outline="0px"> 
         <!-- Your video -->
-<!--         <source src="pics/comparison.mp4" -->
-        <source src="pics/comparison.mp4"
+<!--         <source src="pics/ITT_compress.mp4" -->
+        <source src="pics/ITT_compress.mp4"
         type="video/mp4">
       </video>
       <!-- <h2 class="subtitle has-text-centered"> 
@@ -206,34 +187,7 @@ the source render images to develop a temporally consistent diffusion model, whi
   </div> 
 </section>
 
-  <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <h2 class="title is-3">The Editing Results of Our Method</h2>
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="item item-comp_avatar_1">
-            <video poster="" id="comp_avatar_1" autoplay controls muted loop playsinline height="100%">
-              <source src="./pics/demo1.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-comp_avatar_2">
-            <video poster="" id="comp_avatar_2" autoplay controls muted loop playsinline height="100%">
-              <source src="./pics/demo2.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-comp_avatar_3">
-            <video poster="" id="comp_avatar_3" autoplay controls muted loop playsinline height="100%">
-              <source src="./pics/demo3.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
 </section>
 
 <!-- Statcounter tracking code -->
